@@ -1,6 +1,11 @@
 import torch
 import feedparser
+import shutil
 from diffusers import StableDiffusion3Pipeline
+from datetime import datetime
+
+timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+shutil.copy('website/sd3.png', f'website/old/{timestamp}.png')
 
 def get_rss_titles(url):
     feed = feedparser.parse(url)
@@ -18,5 +23,5 @@ pipe = StableDiffusion3Pipeline.from_pretrained(
 )
 pipe.enable_model_cpu_offload()
 image = pipe(prompt).images[0]
-image.save("sd3.png")
+image.save("website/sd3.png")
 print("Image saved to sd3.png")
