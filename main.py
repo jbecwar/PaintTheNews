@@ -10,6 +10,8 @@ shutil.copy('website/paint.png', f'website/old/{timestamp}.png')
 
 titles = getTitles()
 
+print(titles)
+
 prompt = genPrompt(titles)
 
 
