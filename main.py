@@ -1,28 +1,17 @@
-import torch
-import feedparser
 import shutil
-from diffusers import StableDiffusion3Pipeline
 from datetime import datetime
+
 from git import push
+from rss import getTitles
+from ai import genPrompt
 
 timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
 shutil.copy('website/paint.png', f'website/old/{timestamp}.png')
 
-def get_rss_titles(url):
-    feed = feedparser.parse(url)
-    return [entry.title for entry in feed.entries]
+titles = getTitles()
 
-rss_url = 'https://www.reddit.com/r/News/.rss'
-titles = get_rss_titles(rss_url)
-print(titles)
+prompt = genPrompt(titles)
 
-prompt = "abstract emotional painting with brush strokes " + (" ".join(titles))
 
-pipe = StableDiffusion3Pipeline.from_pretrained(
-    "stabilityai/stable-diffusion-3-medium-diffusers", torch_dtype=torch.float16
-)
-pipe.enable_model_cpu_offload()
-image = pipe(prompt).images[0]
-image.save("website/paint.png")
-print("Image saved to paint.png")
+
 push()
