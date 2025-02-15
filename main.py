@@ -16,6 +16,4 @@ prompt = genPrompt(titles)
 
 stableDiffusion(prompt)
 
-
-
-#push()
+push()
