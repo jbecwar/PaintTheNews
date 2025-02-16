@@ -2,7 +2,7 @@ from diffusers import StableDiffusion3Pipeline
 import torch
 
 def genPrompt(titles):
-    prompt = "Kawaii theame art based on: " + (" ".join(titles))
+    prompt = "abstract emotional painting with brush strokes " + (" ".join(titles))
     prompt = removeCommonWords(prompt)
     return prompt
 
