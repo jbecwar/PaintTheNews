@@ -4,7 +4,7 @@ from datetime import datetime
 
 from git import push
 from rss import getTitles
-from ai import genPrompt, stableDiffusion
+from ai import genPrompt, stableDiffusion, stableVideoDiffusion
 
 db.initDb()
 timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -17,5 +17,6 @@ print(titles)
 prompt = genPrompt(titles)
 
 stableDiffusion(prompt)
+stableVideoDiffusion()
 
 push()
