@@ -1,0 +1,11 @@
+{
+    "sqltools.connections": [
+        {
+            "previewLimit": 50,
+            "driver": "SQLite",
+            "name": "paintthenews",
+            "database": "paint_the_news.db"
+        }
+    ],
+    "sqltools.useNodeRuntime": true
+}
