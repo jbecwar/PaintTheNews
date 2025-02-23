@@ -1,7 +1,7 @@
 # PaintTheNews
 
 ## Description
-PaintTheNews is a project that generates abstract emotional paintings based on the latest news headlines.
+PaintTheNews is a project that generates abstract emotional paintings based on the latest news headlines.  Content is published automaticly to https://paintthenews.pages.dev
 
 ## Installation
 To install the required dependencies, run:
@@ -33,3 +33,4 @@ Contributions are welcome! Please fork the repository and submit a pull request.
 ## Acknowledgements
 - [Feedparser](https://github.com/kurtmckee/feedparser) for parsing RSS feeds
 - [Diffusers](https://github.com/huggingface/diffusers) for the Stable Diffusion models
+- [Cloudflair](https://www.cloudflare.com/) for hosting
