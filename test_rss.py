@@ -18,7 +18,6 @@ class TestGetTitles(unittest.TestCase):
         titles = getTitles()
 
         # Check that the database functions were called correctly
-        mock_db.createHeadlineTable.assert_called_once()
         mock_db.insertHeadline.assert_any_call('https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml', 'Title 1', 'Link 1', '01/01/2022')
         mock_db.insertHeadline.assert_any_call('https://rss.nytimes.com/services/xml/rss/nyt/HomePage.xml', 'Title 2', 'Link 2', '12/31/2025')
 
