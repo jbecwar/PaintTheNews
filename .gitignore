@@ -171,3 +171,4 @@ cython_debug/
 .pypirc
 
 paintthenews.session.sql
+logs/
