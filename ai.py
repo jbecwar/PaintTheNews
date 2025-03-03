@@ -1,7 +1,9 @@
+import os
 from diffusers import StableVideoDiffusionPipeline
 from diffusers.utils import load_image, export_to_video
 from diffusers import StableDiffusion3Pipeline
 import torch
+import moviepy.editor as mpy
 
 def genPrompt(titles):
     prompt = "abstract emotional painting with brush strokes " + (" ".join(titles))
@@ -21,14 +23,43 @@ def removeCommonWords(prompt):
     prompt = " ".join([word for word in prompt.split() if word.lower() not in commonWords])
     return prompt
 
-def stableVideoDiffusion():
+def stableVideoDiffusion(image, output):
     pipeline = StableVideoDiffusionPipeline.from_pretrained(
         "stabilityai/stable-video-diffusion-img2vid-xt", torch_dtype=torch.float16, variant="fp16"
     )
     pipeline.enable_model_cpu_offload()
 
-    image = load_image("website/paint.png")
+    image = load_image(image)
     
     frames = pipeline(image, decode_chunk_size=8).frames[0]
-    export_to_video(frames, "website/generated.mp4", fps=7)
+    export_to_video(frames, output, fps=7)
     return
+
+def extractLastFrame(path):
+    import cv2
+    cap = cv2.VideoCapture(path)
+    cap.set(cv2.CAP_PROP_POS_FRAMES, cap.get(cv2.CAP_PROP_FRAME_COUNT) - 1)
+    ret, frame = cap.read()
+    cv2.imwrite("tmp/lastFrame.png", frame)
+    cap.release()
+    return
+
+def combineMpgVideos(videos,output):
+    
+    clips = [mpy.VideoFileClip(video) for video in videos]
+    final_clip = mpy.concatenate_videoclips(clips)
+    final_clip.write_videofile(output)
+    return
+
+def longStableDiffusionVideo(image,output,runs):
+    stableVideoDiffusion(image, "tmp/0.mp4")
+    for i in range(runs):
+        print(f"Processing run {i}")
+        extractLastFrame(f"tmp/{i}.mp4")
+        stableVideoDiffusion("tmp/lastFrame.png", f"tmp/{i+1}.mp4")
+    combineMpgVideos([f"tmp/{i}.mp4" for i in range(runs+1)], output)
+    for i in range(runs+1):
+        os.remove(f"tmp/{i}.mp4")
+    return
+
+    
