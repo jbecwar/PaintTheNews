@@ -4,6 +4,8 @@ from diffusers.utils import load_image, export_to_video
 from diffusers import StableDiffusion3Pipeline
 import torch
 import moviepy.editor as mpy
+from transformers import pipeline
+import scipy
 
 def genPrompt(titles):
     prompt = "abstract emotional painting with brush strokes " + (" ".join(titles))
@@ -62,4 +64,18 @@ def longStableDiffusionVideo(image,output,runs):
         os.remove(f"tmp/{i}.mp4")
     return
 
+def genMusic(prompt,output):
+    synthesiser = pipeline("text-to-audio", "facebook/musicgen-medium")
+
+    music = synthesiser(prompt, forward_params={"do_sample": True})
+
+    scipy.io.wavfile.write(output, rate=music["sampling_rate"], data=music["audio"])
+    return
+
+def combineVideoAndMusic(video, music, output):
+    video = mpy.VideoFileClip(video)
+    music = mpy.AudioFileClip(music)
+    video = video.set_audio(music)
+    video.write_videofile(output)
+    return 
     

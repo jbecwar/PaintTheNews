@@ -4,7 +4,7 @@ from datetime import datetime
 
 from git import push
 from rss import getTitles
-from ai import genPrompt, stableDiffusion, stableVideoDiffusion,longStableDiffusionVideo
+from ai import genPrompt, stableDiffusion, stableVideoDiffusion,longStableDiffusionVideo, genMusic,combineVideoAndMusic
 
 db.initDb()
 timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
@@ -18,5 +18,7 @@ print(titles)
 prompt = genPrompt(titles)
 
 stableDiffusion(prompt)
-longStableDiffusionVideo("website/paint.png", "website/generated.mp4", 10)
+longStableDiffusionVideo("website/paint.png", "tmp/generated.mp4", 7)
+genMusic(prompt, "tmp/music.wav")
+combineVideoAndMusic("tmp/generated.mp4", "tmp/music.wav", "website/generated.mp4")
 push()
