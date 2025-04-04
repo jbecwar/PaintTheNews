@@ -173,3 +173,4 @@ cython_debug/
 paintthenews.session.sql
 logs/
 tmp/
+try/
