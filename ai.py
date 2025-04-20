@@ -6,9 +6,29 @@ import torch
 import moviepy.editor as mpy
 from transformers import pipeline
 import scipy
+import random
 
 def genPrompt(titles):
-    prompt = "abstract emotional painting with brush strokes " + (" ".join(titles))
+    prompts = [
+        "abstract emotional painting with brush strokes",
+        "fun cartoon like"
+        "photo realistic",
+        "abstract",
+        "surreal",
+        "impressionist",
+        "cubist",
+        "pop art",
+        "expressionist",
+        "futuristic",
+        "fantasy",
+        "dark",
+        "bright",
+        "colorful",
+        "monochrome style",
+        "ancient style"
+    ]
+    prompt = random.choice(prompts)
+    prompt = prompt + " " + (" ".join(titles))
     prompt = removeCommonWords(prompt)
     return prompt
 
