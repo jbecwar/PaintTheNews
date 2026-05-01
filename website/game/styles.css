@@ -1,0 +1,134 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background: #000;
+    color: #fff;
+    overflow: hidden;
+}
+
+#gameContainer {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#gameCanvas {
+    background: linear-gradient(180deg, #000428 0%, #000 100%);
+    border: 2px solid #0f4;
+    box-shadow: 0 0 20px #0f4;
+}
+
+#ui {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    z-index: 10;
+}
+
+#ui h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+    color: #0f4;
+    text-shadow: 0 0 10px #0f4;
+}
+
+.info {
+    font-size: 16px;
+    margin: 5px 0;
+}
+
+#gameOver {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
+    display: none;
+}
+
+#gameOver h2 {
+    font-size: 48px;
+    color: #0f4;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px #0f4;
+}
+
+#gameOver p {
+    font-size: 24px;
+    margin: 10px 0;
+}
+
+#gameOver button {
+    margin-top: 20px;
+    padding: 15px 40px;
+    font-size: 18px;
+    background: #0f4;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#gameOver button:hover {
+    background: #0ff;
+    box-shadow: 0 0 20px #0ff;
+}
+
+#startScreen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    z-index: 100;
+}
+
+#startScreen h2 {
+    font-size: 48px;
+    color: #0f4;
+    margin-bottom: 20px;
+    text-shadow: 0 0 20px #0f4;
+}
+
+#startScreen p {
+    font-size: 18px;
+    margin: 10px 0;
+    color: #aaa;
+}
+
+#startScreen button {
+    margin-top: 30px;
+    padding: 15px 40px;
+    font-size: 18px;
+    background: #0f4;
+    color: #000;
+    border: none;
+    cursor: pointer;
+    border-radius: 5px;
+    font-weight: bold;
+}
+
+#startScreen button:hover {
+    background: #0ff;
+    box-shadow: 0 0 20px #0ff;
+}
+
+.controls {
+    position: absolute;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10;
+    font-size: 14px;
+    color: #666;
+}
