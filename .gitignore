@@ -174,3 +174,5 @@ paintthenews.session.sql
 logs/
 tmp/
 try/
+website/old
+
