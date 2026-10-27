@@ -1,8 +1,9 @@
 from bs4 import BeautifulSoup
 from db import selectHeadlines
+from datetime import datetime
 import html  # Add this import
 
-def updataeHeadlines(runtime):
+def updataeHeadlines(runtime, sourceName, generatedTime):
     headlines = selectHeadlines(runtime)
     headlines_html = '<ul>'
     for headline in headlines:
@@ -12,6 +13,8 @@ def updataeHeadlines(runtime):
         headlines_html += f'<li><a href="{safe_url}">{safe_headline}</a></li>'
     headlines_html += '</ul>'
     update_div_content('website/index.html', 'headlineList', headlines_html)
+    update_div_content('website/index.html', 'headlineSource', sourceName)
+    update_div_content('website/index.html', 'generatedTimestamp', generatedTime)
     return
 
 def update_div_content(html_file, div_id, new_content, output_file=None):
@@ -31,8 +34,8 @@ def update_div_content(html_file, div_id, new_content, output_file=None):
     # Parse the HTML
     soup = BeautifulSoup(html_content, 'html.parser')
     
-    # Find the div by ID
-    target_div = soup.find('div', id=div_id)
+    # Find the element by ID
+    target_div = soup.find(id=div_id)
     
     if target_div:
         # Clear existing content and add new content

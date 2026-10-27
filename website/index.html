@@ -4,81 +4,168 @@
 <head>
 <meta charset="utf-8"/>
 <title>Paint the News</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Pacifico&amp;family=Playfair+Display:ital,wght@0,600;0,700;1,700;1,800&amp;family=Inter:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
 <style>
         body {
             text-align: center;
-            background-color: black;
+            background-color: #0a0a0a;
+            color: #e6e6e6;
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 16px;
+            line-height: 1.55;
         }
 
         footer {
             position: fixed;
             bottom: 0;
-            width: 100%;
+            left: 0;
+            right: 0;
             text-align: center;
-            color: white;
-            font-size: small;
+            color: #8a8a8a;
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 0.78rem;
+            padding: 0 0.6em 0.7em;
+            background: #141414;
+            border-top: 1px solid rgba(255, 255, 255, 0.14);
+            z-index: 10;
+        }
+
+        .footer-brushstroke {
+            width: 140px;
+            height: 4px;
+            margin: 0.8em auto 0.7em;
+            border-radius: 2px;
+            background: linear-gradient(90deg, transparent, #ff6b6b, #feca57, #48dbfb, transparent);
+            opacity: 0.6;
         }
 
         footer a {
-            color: white;
+            color: #d0d0d0;
             text-decoration: none;
         }
 
         footer a:hover {
+            color: #ffffff;
             text-decoration: underline;
         }
 
         div#headlines {
-            color: white;
-            font-size: normal;
-            font-family: Arial, sans-serif;
+            color: #e6e6e6;
             margin: 0 auto;
             width: 100%;
             text-align: center;
-            padding-top: 2em;
+            padding-top: 2.4em;
         }
+
+        div#headlines .headline-lead {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #f5f5f5;
+            letter-spacing: 0.01em;
+            margin: 0 0 0.2em;
+        }
+
+        div#headlines .headline-lead #headlineSource {
+            font-family: 'Playfair Display', Georgia, serif;
+            font-weight: 800;
+            font-style: italic;
+            border-bottom: 2px solid #feca57;
+            padding-bottom: 1px;
+        }
+
         div#headlineList {
-            
-            font-size: small;
+            font-size: 0.9rem;
         }
 
         ul {
             list-style-type: none;
-            padding-top: 1em;
-            padding-bottom: 2em;
-            width: 50%; 
+            padding-top: 1.2em;
+            padding-bottom: 5em;
+            width: 64%;
             margin: 0 auto;
-            padding-left:0;
-
+            padding-left: 0;
         }
 
         div#headlines a {
-            color: white;
+            color: #d9d9d9;
             text-decoration: none;
+            transition: color 0.15s ease;
         }
 
         div#headlines a:hover {
+            color: #ffffff;
             text-decoration: underline;
         }
 
         li {
             display: inline-block;
             width: 100%;
-            margin: 0.5em;
+            margin: 0.75em 0;
+        }
+
+        header#siteHeader {
+            padding: 2.6em 0 0;
+        }
+
+        header#siteHeader h1 {
+            font-family: 'Pacifico', 'Brush Script MT', 'Segoe Script', cursive;
+            font-size: 3em;
+            font-weight: normal;
+            margin: 0;
+            padding-bottom: 0.3em;
+            background: linear-gradient(90deg, #ff6b6b, #feca57, #48dbfb, #ff9ff3, #ff6b6b);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            color: transparent;
+            animation: paletteShimmer 10s linear infinite;
+        }
+
+        @keyframes paletteShimmer {
+            to { background-position: 200% center; }
+        }
+
+        .brushstroke {
+            width: 180px;
+            height: 5px;
+            margin: 1.1em auto;
+            border-radius: 3px;
+            background: linear-gradient(90deg, transparent, #ff6b6b, #feca57, #48dbfb, transparent);
+            opacity: 0.75;
+        }
+
+        .tagline {
+            color: #8f8f8f;
+            font-family: 'Inter', Arial, sans-serif;
+            font-size: 0.78rem;
+            font-weight: 500;
+            letter-spacing: 0.32em;
+            text-transform: uppercase;
+            margin: 0 0 2em;
         }
     </style>
 </head>
 <body>
+<header id="siteHeader">
+<h1>Paint The News</h1>
+<div class="brushstroke"></div>
+<p class="tagline">Where today's headlines become art</p>
+</header>
 <img alt="Paint the News" src="paint.png"/>
 <p></p>
 <video controls="" height="576" width="1024">
 <source src="generated.mp4" type="video/mp4"/>
 </video>
-<div id="headlines">Based on the following headlines
-        <div id="headlineList"><ul><li><a href="https://www.npr.org/2026/10/26/nx-s1-6017810/snap-benefits-ebt-card-chip-usda-rule">Trump administration pushes for food assistance card upgrade to fight fraud</a></li><li><a href="https://www.npr.org/2026/10/26/g-s1-149960/judge-maurene-comey-illegal-dismissal">Judge says DOJ illegally fired the daughter of former FBI director Comey</a></li><li><a href="https://www.npr.org/2026/10/26/nx-s1-6014772/anthropic-ai-ipo-could-break-records">AI giant Anthropic files for an IPO that could break records</a></li><li><a href="https://www.npr.org/2026/10/26/g-s1-149923/australian-judge-rejects-prisoners-human-rights-challenge-to-vegemite-ban">Australian judge rejects prisoner's human rights challenge to Vegemite ban</a></li><li><a href="https://www.npr.org/2026/10/26/g-s1-149918/what-to-know-about-chinas-plenum-as-xi-seeks-stronger-party-discipline">What to know about China's plenum as Xi seeks stronger party discipline</a></li><li><a href="https://www.npr.org/2026/10/26/g-s1-149917/up-first-newsletter-republican-redistricting-france-serbia-protests-brazil-luiz-inacio-lula-da-silva">Redistricting isn't playing out how the GOP hoped. And, Brazil's Lula wins 4th term</a></li><li><a href="https://www.npr.org/2026/10/26/nx-s1-6016816/trump-escalates-anti-muslim-attacks">Trump escalates anti-Muslim attacks against El-Sayed in Michigan</a></li><li><a href="https://www.npr.org/2026/10/26/nx-s1-6012820/ai-hurricane-forecast-google-deepmind-isaias">How AI is transforming hurricane forecasts</a></li><li><a href="https://www.npr.org/2026/10/26/nx-s1-6000653/special-education-teacher-shortage">Special ed diaries: Teachers tell NPR about their most joyous, most difficult moments</a></li><li><a href="https://www.npr.org/2026/10/26/nx-s1-6009247/loggers-say-roadless-rule-repeal-wont-solve-their-biggest-challenges">Loggers say Roadless Rule repeal won't solve their biggest challenges</a></li></ul></div>
+<div id="headlines"><span class="headline-lead">Based on the following headlines from <span id="headlineSource">Al Jazeera</span></span>
+<div id="headlineList"><ul><li><a href="https://www.aljazeera.com/news/2026/10/27/exit-polls-following-israeli-elections-indicate-no-clear-winner?traffic_source=rss">Exit polls following Israeli elections indicate no clear winner</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/tanzanias-jailed-opposition-leader-tundu-lissu-ends-brief-hunger-strike?traffic_source=rss">Tanzania’s jailed opposition leader Tundu Lissu ends brief hunger strike</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/qatars-emir-and-putin-call-for-diplomacy-amid-us-iran-conflict?traffic_source=rss">Qatar’s Emir and Putin call for diplomacy amid US-Iran conflict</a></li><li><a href="https://www.aljazeera.com/news/liveblog/2026/10/27/israel-election-results-live-exit-polls-soon-as-netanyahu-faces-tight-race?traffic_source=rss">Israel election results live: Eisenkot bloc ‘ahead’ of Netanyahu camp</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/uss-rfk-jr-claims-arabs-dont-produce-science-why-hes-very-very-wrong?traffic_source=rss">US’s RFK Jr claims Arabs ‘don’t produce science’: Why he’s very, very wrong</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/trump-says-hell-respect-us-midterm-results-if-elections-are?traffic_source=rss">Trump says he’ll respect US midterm results if elections are ‘honest’</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/deadly-tornado-strikes-construction-site-in-turkiye?traffic_source=rss">Deadly tornado strikes construction site in Turkiye</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/russia-jails-it-worker-for-13-years-for-donating-money-to-ukraine?traffic_source=rss">Russia jails IT worker for 13 years for donating money to Ukraine</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/indonesia-wildfires-rain-toxic-haze-southeast-asia?traffic_source=rss">Rain brings temporary relief as Southeast Asia battles fires and toxic haze</a></li><li><a href="https://www.aljazeera.com/sports/2026/10/27/ballon-dor-harry-kane-england-bayern-munich?traffic_source=rss">Harry Kane: How the ‘runt of the litter’ conquered a historic Ballon d’Or</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/the-whatsapp-general-behind-lulas-election-comeback-in-brazil?traffic_source=rss">The WhatsApp ‘general’ behind Lula’s election comeback in Brazil</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/if-theyre-honest-trump-casts-latest-suspicion-on-us-midterm-elections?traffic_source=rss">‘If they’re honest’: Trump casts latest suspicion on US midterm elections</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/jerusalem-daily-israeli-elections-underway?traffic_source=rss">Jerusalem Daily: Israeli elections underway</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/arab-parties-in-israel-accuse-netanyahu-of-inciting-hatred-to-scare-voters?traffic_source=rss">Arab parties in Israel accuse Netanyahu of inciting hatred to scare voters</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/protesters-storm-serbian-pro-vucic-tv-station-after-his-loss-at-polls?traffic_source=rss">Protesters storm Serbian pro-Vucic TV station after his loss at polls</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/spain-deports-migrants-from-ceuta-in-move-criticised-by-rights-group?traffic_source=rss">Spain deports migrants from Ceuta in move criticised by rights group</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/fire-engulfs-seouls-last-shanty-town-forcing-hundreds-to-evacuate?traffic_source=rss">Fire engulfs Seoul’s last shanty-town, forcing hundreds to evacuate</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/funeral-held-for-family-killed-in-jordanian-airstrikes-in-syria?traffic_source=rss">Funeral held for family killed in Jordanian airstrikes in Syria</a></li><li><a href="https://www.aljazeera.com/news-analysis/2026/10/27/lulas-victory-echoes-across-brics-after-fears-over-a-bolsonaro-win?traffic_source=rss">Lula’s victory echoes across BRICS after fears of a Bolsonaro win</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/death-toll-from-attack-by-gunmen-in-northeastern-nigeria-rises-to-62?traffic_source=rss">Death toll from attack by gunmen in northeastern Nigeria rises to 62</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/iranian-and-qatari-leaders-meet-at-russian-energy-forum?traffic_source=rss">Iranian and Qatari leaders meet at Russian energy forum</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/irans-calculations-as-us-escalation-looms-trust-midterms-hormuz?traffic_source=rss">Iran’s calculations as US escalation looms: Trust, midterms, Hormuz</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/israel-election-turnout-highest-in-50-years-as-voting-continues?traffic_source=rss">Israel election turnout highest in 50 years as voting continues</a></li><li><a href="https://www.aljazeera.com/video/newsfeed/2026/10/27/cyclone-arnab-batters-indias-east-coast?traffic_source=rss">Cyclone Arnab batters India’s east coast</a></li><li><a href="https://www.aljazeera.com/news/2026/10/27/israeli-military-detains-egyptian-national-who-crossed-border?traffic_source=rss">Israeli military detains Egyptian national who crossed border</a></li></ul></div>
 </div>
 <footer>
-<a href="https://www.github.com/jbecwar/PaintTheNews">source</a>
+<div class="footer-brushstroke"></div>
+<span id="generatedTimestamp">October 27, 2026 at 03:44 PM</span> · <a href="https://www.github.com/jbecwar/PaintTheNews">source</a>
 </footer>
 </body>
 </html>

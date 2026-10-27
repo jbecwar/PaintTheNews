@@ -8,11 +8,13 @@ from ai import genPrompt, stableDiffusion, stableVideoDiffusion,longStableDiffus
 from htmlHelper import updataeHeadlines
 
 db.initDb()
-timestamp = datetime.now().strftime('%Y%m%d%H%M%S')
+now = datetime.now()
+timestamp = now.strftime('%Y%m%d%H%M%S')
+generatedTime = now.strftime('%B %d, %Y at %I:%M %p')
 shutil.copy('website/paint.png', f'website/old/{timestamp}.png')
 shutil.copy('website/generated.mp4', f'website/old/{timestamp}.mp4')    
 
-titles = getTitles(timestamp)
+feedName, titles = getTitles(timestamp)
 
 prompt = genPrompt(titles)
 
@@ -20,5 +22,5 @@ stableDiffusion(prompt)
 longStableDiffusionVideo("website/paint.png", "tmp/generated.mp4", 7)
 genMusic(prompt, "tmp/music.wav")
 combineVideoAndMusic("tmp/generated.mp4", "tmp/music.wav", "website/generated.mp4")
-updataeHeadlines(timestamp)
+updataeHeadlines(timestamp, feedName, generatedTime)
 push()

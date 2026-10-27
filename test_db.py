@@ -17,7 +17,7 @@ class TestDBFunctions(unittest.TestCase):
         # Check that the database functions were called correctly
         mock_connect.assert_called_once_with('paint_the_news.db')
         mock_conn.cursor.assert_called_once()
-        mock_cursor.execute.assert_called_once_with('''CREATE TABLE IF NOT EXISTS headlines (id INTEGER PRIMARY KEY AUTOINCREMENT, source TEXT, title TEXT, url TEXT, date TEXT)''')
+        mock_cursor.execute.assert_called_once_with('''CREATE TABLE IF NOT EXISTS headlines (id INTEGER PRIMARY KEY AUTOINCREMENT, source TEXT, title TEXT, url TEXT, date TEXT, runtime TEXT)''')
         mock_conn.commit.assert_called_once()
         mock_conn.close.assert_called_once()
 
@@ -30,12 +30,12 @@ class TestDBFunctions(unittest.TestCase):
         mock_conn.cursor.return_value = mock_cursor
 
         # Call the function
-        db.insertHeadline('source', 'title', 'url', 'date')
+        db.insertHeadline('source', 'title', 'url', 'date', 'runtime')
 
         # Check that the database functions were called correctly
         mock_connect.assert_called_once_with('paint_the_news.db')
         mock_conn.cursor.assert_called_once()
-        mock_cursor.execute.assert_called_once_with('''INSERT INTO headlines (source, title, url, date) VALUES (?, ?, ?, ?)''', ('source', 'title', 'url', 'date'))
+        mock_cursor.execute.assert_called_once_with('''INSERT INTO headlines (source, title, url, date, runtime) VALUES (?, ?, ?, ?, ?)''', ('source', 'title', 'url', 'date', 'runtime'))
         mock_conn.commit.assert_called_once()
         mock_conn.close.assert_called_once()
 
