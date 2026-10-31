@@ -1,7 +1,29 @@
+import subprocess
+import sys
 import shutil
-import db
 from datetime import datetime
 
+def check_vram():
+    try:
+        result = subprocess.check_output(
+            ["nvidia-smi", "--query-gpu=memory.free", "--format=csv,noheader,nounits"],
+            encoding="utf-8"
+        )
+        lines = result.strip().split('\n')
+        if not lines:
+            print("Error: No GPU detected.")
+            sys.exit(1)
+        free_vram_mib = int(lines[0])
+        if free_vram_mib < 20 * 1024:
+            print(f"There isn't enough free vram. (Free: {free_vram_mib / 1024:.2f}GB)")
+            sys.exit(1)
+    except Exception as e:
+        print(f"Error checking VRAM: {e}")
+        sys.exit(1)
+
+check_vram()
+
+import db
 from git import push
 from rss import getTitles
 from ai import genPrompt, stableDiffusion, stableVideoDiffusion,longStableDiffusionVideo, genMusic,combineVideoAndMusic
